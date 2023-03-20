@@ -9,7 +9,7 @@ rooms = [
     {"number": 0, "passcode": None, "person": {"firstname": "Test", "surname": "Ing"}}
 ]
 # rooms["number"] = interger
-# rooms["passcode"] = interge
+# rooms["passcode"] = interger
 # rooms["person"] = object || firstname = string || surname = string
 
 
@@ -222,17 +222,24 @@ while True:
         system("cls")
 
         print("Enter your room number")
-        answer2 = int(input())
+        answer2 = input()
         print("Enter your passcode")
-        answer3 = int(input())
+        answer3 = input()
 
         system("cls")
 
-        UnBookRoom(answer2, answer3)
+        if(answer2.isnumeric() and answer3.isnumeric()):
+          UnBookRoom(int(answer2), int(answer3))
+          
+          sleep(6)
 
-        sleep(6)
-
-        system("cls")
+          system("cls")
+        else:
+          print("Either room number or passcode is not numeric, anyway I can not cancel your booking")
+          
+          sleep(2)
+          
+          system("cls")
 
     elif answer1 == "3":
 
