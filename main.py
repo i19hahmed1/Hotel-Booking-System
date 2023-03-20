@@ -47,34 +47,48 @@ def BookRoom(firstname, surname):
                 break
 
     def filterName(arrName):
-      if(arrName["person"]["name"] == firstname+surname):
-        return True
-      else:
-        return False
+        if arrName["person"]["name"] == firstname + surname:
+            return True
+        else:
+            return False
 
-    pinCorrect = { "yes": False, "pin": filter(filterName, pinData)[0]["person"]["pin"] }
-   
-   
-    print("Please enter the pin for your account, to exit please type \"0\"")
+    pinCorrect = filter(filterName, pinData)[0]["person"]["pin"]
 
-    rooms.append(
-        {
-            "number": rooms[len(rooms) - 1]["number"] + 1,
-            "passcode": randrange(1000000, 9999999),
-            "person": {"firstname": firstname, "surname": surname},
-        }
-    )
+    while True:
+      
+        print('Please enter the pin for your account to book a room, to exit please type "0"')
+      
+        answerF1 = input()
 
-    print(
-        "I have added "
-        + firstname
-        + " "
-        + surname
-        + " to room "
-        + str(rooms[len(rooms) - 1]["number"])
-        + " your passcode is "
-        + str(rooms[len(rooms) - 1]["passcode"])
-    )
+        if answerF1 == "0":
+            break
+
+        if answerF1 != pinCorrect:
+            print("Incorrect pin, try again")
+            sleep(2)
+            system("cls")
+        else:
+          
+            rooms.append(
+                {
+                    "number": rooms[len(rooms) - 1]["number"] + 1,
+                    "passcode": randrange(1000000, 9999999),
+                    "person": {"firstname": firstname, "surname": surname},
+                }
+            )
+
+            print(
+            "I have added "
+            + firstname
+            + " "
+            + surname
+            + " to room "
+            + str(rooms[len(rooms) - 1]["number"])
+            + " your passcode is "
+            + str(rooms[len(rooms) - 1]["passcode"])
+            )
+            
+            break
 
     return True
 
